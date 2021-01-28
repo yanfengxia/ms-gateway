@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and().addFilterBefore(jwtFilter, BasicAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/ms-auth/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**").authenticated();
 
