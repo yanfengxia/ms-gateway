@@ -11,7 +11,7 @@ ext {
     springCloudVersion = '2.2.5.RELEASE'
 }
 
-group 'org.example.dms.proxy'
+group 'com.beta.dms'
 version '1.0'
 
 repositories {
