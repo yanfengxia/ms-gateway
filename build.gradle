@@ -11,7 +11,7 @@ ext {
     springCloudVersion = '2.2.5.RELEASE'
 }
 
-group 'com.beta.dms'
+group 'com.beta.ms'
 version '1.0'
 
 repositories {
