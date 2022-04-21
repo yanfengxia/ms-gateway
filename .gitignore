@@ -33,3 +33,6 @@ out/
 bin/
 *.gz
 *.log
+
+# OS files
+.DS_Store
