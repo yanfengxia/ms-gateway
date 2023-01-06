@@ -1,14 +1,12 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id 'io.franzbecker.gradle-lombok' version '3.3.0'
-    id "com.palantir.docker" version "0.25.0"
+    id 'org.springframework.boot' version '2.7.7'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 ext {
-    springBootVersion = '2.3.3.RELEASE'
-    springCloudVersion = '2.2.5.RELEASE'
+    springBootVersion = '2.7.7'
+    springCloudVersion = '3.1.4'
 }
 
 group 'com.beta.ms'
@@ -23,28 +21,16 @@ repositories {
 dependencies {
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: "${springCloudVersion}"
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: "${springCloudVersion}"
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-zuul', version: "${springCloudVersion}"
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: "${springCloudVersion}"
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}"
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springBootVersion}"
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springBootVersion}"
 
-    implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
-    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
-    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+//    implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+//    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+//    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: "${springBootVersion}"
 
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
 
-    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
-
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
-
-docker {
-    println "archived file name - ${jar.destinationDirectory.get()}/${jar.archiveFileName.get()}"
-    println "docker image name - ${project.group}/${project.name}"
-    name "${project.group}/${project.name}"
-    files jar.destinationDirectory.get()
-    buildArgs(['JAR_FILE': "${jar.archiveFileName.get()}"])
-}
-
-docker.dependsOn(build)
